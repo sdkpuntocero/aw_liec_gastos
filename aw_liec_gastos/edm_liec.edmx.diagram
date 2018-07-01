@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8ae868c730e843ce9114d4c7325f27fa" Name="Diagram1">
+        <EntityTypeShape EntityType="db_liecModel.fact_estatus" Width="1.5" PointX="0.75" PointY="13" />
+        <EntityTypeShape EntityType="db_liecModel.fact_tipo_rubro" Width="1.5" PointX="3.75" PointY="5.25" />
+        <EntityTypeShape EntityType="db_liecModel.fact_tipo_usuario" Width="1.5" PointX="6" PointY="9.875" />
+        <EntityTypeShape EntityType="db_liecModel.inf_caja" Width="1.5" PointX="6" PointY="12.375" />
+        <EntityTypeShape EntityType="db_liecModel.inf_control_montos" Width="1.5" PointX="7.5" PointY="19.625" />
+        <EntityTypeShape EntityType="db_liecModel.inf_email_envio" Width="1.5" PointX="3" PointY="8.625" />
+        <EntityTypeShape EntityType="db_liecModel.inf_email_recepcion" Width="1.5" PointX="3" PointY="13.125" />
+        <EntityTypeShape EntityType="db_liecModel.inf_empresa" Width="1.5" PointX="3" PointY="16.25" />
+        <EntityTypeShape EntityType="db_liecModel.inf_gastos" Width="1.5" PointX="5.25" PointY="26.125" />
+        <EntityTypeShape EntityType="db_liecModel.inf_gastos_dep" Width="1.5" PointX="7.5" PointY="26.75" />
+        <EntityTypeShape EntityType="db_liecModel.inf_rubro" Width="1.5" PointX="5.25" PointY="17.625" />
+        <EntityTypeShape EntityType="db_liecModel.inf_sepomex" Width="1.5" PointX="0.75" PointY="17.125" />
+        <EntityTypeShape EntityType="db_liecModel.inf_usuarios" Width="1.5" PointX="8.25" PointY="14.75" />
+        <AssociationConnector Association="db_liecModel.fk_inf_caja_fact_estatus" />
+        <AssociationConnector Association="db_liecModel.fk_inf_email_envio_fact_estatus" />
+        <AssociationConnector Association="db_liecModel.fk_inf_email_recepcion_fact_estatus" />
+        <AssociationConnector Association="db_liecModel.fk_inf_empresa_fact_estatus1" />
+        <AssociationConnector Association="db_liecModel.fk_inf_inventario_fact_estatus" />
+        <AssociationConnector Association="db_liecModel.fk_inf_usuarios_fact_estatus" />
+        <AssociationConnector Association="db_liecModel.fk_inf_caja_fact_tipo_rubro" />
+        <AssociationConnector Association="db_liecModel.fk_inf_inventario_fact_tipo_rubro" />
+        <AssociationConnector Association="db_liecModel.fk_inf_usuarios_fact_tipo_usuario" />
+        <AssociationConnector Association="db_liecModel.fk_inf_caja_inf_empresa" />
+        <AssociationConnector Association="db_liecModel.fk_inf_control_montos_inf_rubro" />
+        <AssociationConnector Association="db_liecModel.fk_inf_email_envio_inf_empresa" />
+        <AssociationConnector Association="db_liecModel.fk_inf_email_recepcion_inf_empresa" />
+        <AssociationConnector Association="db_liecModel.fk_inf_empresa_inf_sepomex" />
+        <AssociationConnector Association="db_liecModel.FK_inf_gastos_inf_empresa" />
+        <AssociationConnector Association="db_liecModel.fk_inf_inventario_inf_empresa" />
+        <AssociationConnector Association="db_liecModel.fk_inf_usuarios_inf_empresa" />
+        <AssociationConnector Association="db_liecModel.FK_inf_gastos_dep_inf_gastos" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
