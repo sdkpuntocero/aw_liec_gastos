@@ -14,12 +14,6 @@ namespace aw_liec_gastos
     
     public partial class inf_sepomex
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public inf_sepomex()
-        {
-            this.inf_empresa = new HashSet<inf_empresa>();
-        }
-    
         public int id_codigo { get; set; }
         public string d_codigo { get; set; }
         public string d_asenta { get; set; }
@@ -36,8 +30,5 @@ namespace aw_liec_gastos
         public Nullable<int> id_asenta_cpcons { get; set; }
         public string d_zona { get; set; }
         public string c_cve_ciudad { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<inf_empresa> inf_empresa { get; set; }
     }
 }

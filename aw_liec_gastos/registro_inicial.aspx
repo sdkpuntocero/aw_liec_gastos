@@ -48,7 +48,7 @@
                                                     </h5>
                                                     <asp:TextBox CssClass="form-control" ID="txt_callenum_empresa" runat="server" placeholder="Captura Calle ý número" OnTextChanged="txt_callenum_empresa_TextChanged" AutoPostBack="true"></asp:TextBox>
                                                     <div class="text-right">
-                                                        <asp:RequiredFieldValidator ID="rfv_callenum_empresa" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_callenum_empresa" ForeColor="DarkRed" ></asp:RequiredFieldValidator>
+                                                        <asp:RequiredFieldValidator ID="rfv_callenum_empresa" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_callenum_empresa" ForeColor="DarkRed"></asp:RequiredFieldValidator>
                                                     </div>
                                                 </div>
                                             </div>
@@ -57,10 +57,10 @@
                                                     <h5>
                                                         <asp:Label CssClass="control-label" ID="lbl_cp_empresa" runat="server" Text="Código Postal"></asp:Label>
                                                     </h5>
-                                               
-                                                        <asp:TextBox CssClass="form-control" ID="txt_cp_empresa" runat="server" placeholder="Capturar Código Postal" MaxLength="5" OnTextChanged="txt_cp_empresa_TextChanged" AutoPostBack="true"></asp:TextBox>
-                                                        <ajaxToolkit:MaskedEditExtender ID="mee_cp_empresa" runat="server" TargetControlID="txt_cp_empresa" Mask="99999" />
-                                            
+
+                                                    <asp:TextBox CssClass="form-control" ID="txt_cp_empresa" runat="server" placeholder="Capturar Código Postal" MaxLength="5" OnTextChanged="txt_cp_empresa_TextChanged" AutoPostBack="true"></asp:TextBox>
+                                                    <ajaxToolkit:MaskedEditExtender ID="mee_cp_empresa" runat="server" TargetControlID="txt_cp_empresa" Mask="99999" />
+
                                                     <div class="text-right">
                                                         <asp:RequiredFieldValidator ID="rfv_cp_empresa" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_cp_empresa" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
                                                     </div>
@@ -69,7 +69,7 @@
                                                     <h5>
                                                         <asp:Label CssClass="control-label" ID="lbl_colonia_empresa" runat="server" Text="Colonia"></asp:Label>
                                                     </h5>
-                                                    <asp:DropDownList CssClass="form-control" ID="ddl_colonia_empresa" runat="server" ></asp:DropDownList>
+                                                    <asp:DropDownList CssClass="form-control" ID="ddl_colonia_empresa" runat="server"></asp:DropDownList>
                                                     <div class="text-right">
                                                         <asp:RequiredFieldValidator ID="rfv_colonia_empresa" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="ddl_colonia_empresa" InitialValue="0" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
                                                     </div>
@@ -122,10 +122,9 @@
                                                     <h5>
                                                         <asp:Label CssClass="control-label" ID="lbl_usuario_admin" runat="server" Text="*Usuario"></asp:Label>
                                                     </h5>
-                                        
-                                                        <asp:TextBox CssClass="form-control" ID="txt_usuario_admin" runat="server" placeholder="Captura Usuario"></asp:TextBox>
-                                                
-                                              
+
+                                                    <asp:TextBox CssClass="form-control" ID="txt_usuario_admin" runat="server" placeholder="Captura Usuario"></asp:TextBox>
+
                                                     <div class="text-right">
                                                         <asp:RequiredFieldValidator ID="rfv_usuario_admin" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_usuario_admin" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
                                                     </div>
@@ -140,7 +139,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-right">
-                                               <br />
+                                                    <br />
                                                     <asp:Button CssClass="btn" ID="btn_salir_admin" runat="server" Text="Salir" OnClick="btn_salir_admin_Click" />
                                                     <asp:Button CssClass="btn" ID="btn_guardar_admin" runat="server" Text="Guardar" OnClick="btn_guardar_admin_Click" />
                                                 </div>
@@ -174,7 +173,6 @@
                         </div>
                     </div>
                 </ContentTemplate>
-
             </asp:UpdatePanel>
         </div>
     </div>

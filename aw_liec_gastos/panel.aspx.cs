@@ -1,13 +1,10 @@
 ﻿using Microsoft.Reporting.WebForms;
-using Npgsql;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -15,23 +12,21 @@ namespace aw_liec_gastos
 {
     public partial class panel : System.Web.UI.Page
     {
-        static Guid guid_iduser, guid_fnegocio;
-        static int int_idtipousuario, int_tipousuario, int_accion_usuario, int_accion_rubro, int_accion_gasto, int_accion_caja, int_accion_email_envio, int_accion_email_recepcion;
-
+        private static Guid guid_iduser, guid_fnegocio;
+        private static int int_idtipousuario, int_tipousuario, int_accion_usuario, int_accion_rubro, int_accion_gasto, int_accion_caja, int_accion_email_envio, int_accion_email_recepcion;
 
         #region panel
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-
                 if (!IsPostBack)
                 {
                     inf_user();
                 }
                 else
                 {
-
                 }
             }
             catch
@@ -39,11 +34,10 @@ namespace aw_liec_gastos
                 Response.Redirect("acceso.aspx");
             }
         }
+
         private void inf_user()
         {
-
             guid_iduser = (Guid)(Session["ss_id_user"]);
-
 
             using (db_liecEntities m_usuario = new db_liecEntities())
             {
@@ -61,7 +55,6 @@ namespace aw_liec_gastos
                                      i_tu.id_tipo_usuario,
                                      i_c.razon_social,
                                      i_c.id_empresa
-
                                  }).FirstOrDefault();
 
                 lbl_edita_usuariof.Text = i_usuario.nombres + " " + i_usuario.a_paterno + " " + i_usuario.a_materno;
@@ -75,9 +68,11 @@ namespace aw_liec_gastos
                 case 1:
 
                     break;
+
                 case 2:
 
                     break;
+
                 case 3:
 
                     //lkb_resumen.Visible = false;
@@ -95,62 +90,77 @@ namespace aw_liec_gastos
                     chkb_administrador.Visible = false;
 
                     break;
+
                 case 4:
 
                     break;
+
                 case 5:
 
                     break;
+
                 case 6:
 
-
                     break;
+
                 case 7:
 
                     break;
+
                 case 8:
 
                     break;
+
                 case 9:
 
                     break;
+
                 case 10:
 
                     break;
+
                 case 11:
 
                     break;
+
                 case 12:
 
                     break;
+
                 case 13:
 
                     break;
+
                 case 14:
 
                     break;
+
                 default:
 
                     break;
             }
-
         }
+
         protected void lkb_edita_usuariof_Click(object sender, EventArgs e)
         {
             filtra_panel(1);
         }
+
         protected void lkb_fnegocio_Click(object sender, EventArgs e)
         {
             filtra_panel(2);
         }
+
         protected void lkb_resumen_Click(object sender, EventArgs e)
         {
             filtra_panel(3);
         }
+
         protected void lkb_gastos_Click(object sender, EventArgs e)
         {
             filtra_panel(4);
         }
+
         protected void lkb_caja_Click(object sender, EventArgs e)
         {
             filtra_panel(5);
@@ -165,6 +175,7 @@ namespace aw_liec_gastos
         {
             filtra_panel(7);
         }
+
         protected void lkb_correos_Click(object sender, EventArgs e)
         {
             filtra_panel(8);
@@ -173,11 +184,10 @@ namespace aw_liec_gastos
         protected void lkb_salir_Click(object sender, EventArgs e)
         {
             filtra_panel(9);
-
         }
+
         private void filtra_panel(int int_idpanel)
         {
-
             switch (int_idpanel)
             {
                 case 1:
@@ -209,40 +219,33 @@ namespace aw_liec_gastos
 
                     try
                     {
-
                         using (db_liecEntities m_fusuario = new db_liecEntities())
                         {
                             var i_fusuario = (from i_c in m_fusuario.inf_usuarios
                                               where i_c.id_usuario == guid_iduser
                                               select new
                                               {
-
                                                   i_c.nombres,
                                                   i_c.a_paterno,
                                                   i_c.a_materno,
                                                   i_c.fecha_nacimiento,
                                                   i_c.codigo_usuario,
                                                   i_c.clave,
-
                                               }).FirstOrDefault();
-
 
                             txt_nombres_fusuario.Text = i_fusuario.nombres;
                             txt_apaterno_fusuario.Text = i_fusuario.a_paterno;
                             txt_amaterno_fusuario.Text = i_fusuario.a_materno;
                             txt_usuario_fusuario.Text = i_fusuario.codigo_usuario;
                             txt_clave_fusuario.Text = i_fusuario.clave;
-
                         }
                     }
                     catch
                     {
-
                     }
 
-
-
                     break;
+
                 case 2:
                     chkbox_edita_fnegocio.Checked = false;
                     pnl_usuariof.Visible = false;
@@ -257,7 +260,6 @@ namespace aw_liec_gastos
 
                     i_edita_usuariof.Attributes["style"] = "color:#e34d0d";
                     i_editafnegocio.Attributes["style"] = "color:#B9005C";
-
 
                     i_resumen.Attributes["style"] = "color:#e34d0d";
                     i_gastos.Attributes["style"] = "color:#e34d0d";
@@ -276,23 +278,17 @@ namespace aw_liec_gastos
                                         where i_u.id_empresa == guid_fnegocio
                                         select new
                                         {
-
                                             i_u.razon_social,
                                             i_u.telefono,
                                             i_u.email,
                                             i_u.callenum,
                                             i_u.id_codigo,
-
-
                                         }).FirstOrDefault();
-
 
                         txt_nombre_empresa.Text = inf_user.razon_social;
                         txt_telefono_empresa.Text = inf_user.telefono;
                         txt_email_empresa.Text = inf_user.email;
                         txt_callenum_empresa.Text = inf_user.callenum;
-
-
 
                         using (db_liecEntities db_sepomex = new db_liecEntities())
                         {
@@ -305,14 +301,13 @@ namespace aw_liec_gastos
                             ddl_colonia_empresa.DataBind();
                             ddl_colonia_empresa.SelectedValue = tbl_sepomex[0].id_asenta_cpcons.ToString();
 
-
                             txt_cp_empresa.Text = tbl_sepomex[0].d_codigo;
                             txt_municipio_empresa.Text = tbl_sepomex[0].d_mnpio;
                             txt_estado_empresa.Text = tbl_sepomex[0].d_estado;
                         }
-
                     }
                     break;
+
                 case 3:
 
                     pnl_usuariof.Visible = false;
@@ -328,7 +323,6 @@ namespace aw_liec_gastos
                     i_edita_usuariof.Attributes["style"] = "color:#e34d0d";
                     i_editafnegocio.Attributes["style"] = "color:#e34d0d";
 
-
                     i_resumen.Attributes["style"] = "color:#e34d0d";
                     i_gastos.Attributes["style"] = "color:#e34d0d";
                     i_caja.Attributes["style"] = "color:#e34d0d";
@@ -342,6 +336,7 @@ namespace aw_liec_gastos
                     Mensaje("Construyendo");
 
                     break;
+
                 case 4:
                     int_accion_gasto = 0;
                     lbl_pfijo_gasto.Text = null;
@@ -369,7 +364,6 @@ namespace aw_liec_gastos
 
                     limpia_txt_gastos();
 
-
                     txt_buscar_gasto.Visible = false;
                     txt_buscar_gasto.Text = null;
                     btn_buscar_gasto.Visible = false;
@@ -378,6 +372,7 @@ namespace aw_liec_gastos
 
                     gv_gasto.Visible = false;
                     break;
+
                 case 5:
                     int_accion_caja = 0;
 
@@ -405,7 +400,6 @@ namespace aw_liec_gastos
 
                     limpia_txt_caja();
 
-
                     double dml_caja, dml_monto;
 
                     using (db_liecEntities edm_rubro = new db_liecEntities())
@@ -415,7 +409,6 @@ namespace aw_liec_gastos
                                        select new
                                        {
                                            u.monto
-
                                        }).ToList();
 
                         if (i_rubro.Count == 0)
@@ -432,28 +425,24 @@ namespace aw_liec_gastos
                     {
                         var i_gastos = (from i_g in edm_gastos.inf_caja
 
-
                                         select new
                                         {
                                             i_g.monto,
-
                                         }).ToList();
 
                         if (i_gastos.Count == 0)
                         {
                             dml_caja = i_gastos.Count;
-
                         }
                         else
                         {
                             dml_caja = double.Parse(i_gastos.Sum(x => x.monto).ToString());
-
                         }
-
                     }
                     lbl_tcaja.Text = "MONTO: " + string.Format("{0:C}", (Math.Truncate(Convert.ToDouble(dml_monto) * 100.0) / 100.0)) + " GASTOS: " + string.Format("{0:C}", (Math.Truncate(Convert.ToDouble(dml_caja) * 100.0) / 100.0)) + " BALANCE: " + string.Format("{0:C}", (Math.Truncate(Convert.ToDouble(dml_monto - dml_caja) * 100.0) / 100.0));
 
                     break;
+
                 case 6:
 
                     int_accion_rubro = 0;
@@ -489,10 +478,8 @@ namespace aw_liec_gastos
                     txt_pextra_rubro.Enabled = false;
                     gv_rubros.Visible = false;
 
-
-
-
                     break;
+
                 case 7:
                     int_accion_usuario = 0;
 
@@ -520,8 +507,8 @@ namespace aw_liec_gastos
 
                     limpia_txt_usuarios();
 
-
                     break;
+
                 case 8:
 
                     int_accion_email_envio = 0;
@@ -538,7 +525,6 @@ namespace aw_liec_gastos
                     pnl_usuarios.Visible = false;
 
                     limpia_txt_correos();
-
 
                     i_edita_usuariof.Attributes["style"] = "color:#e34d0d";
                     i_editafnegocio.Attributes["style"] = "color:#e34d0d";
@@ -564,12 +550,10 @@ namespace aw_liec_gastos
                         {
                             Mensaje("Sin datos de correo para envio, favor de agregar uno");
                             chkbox_editar_ce.Enabled = false;
-
                         }
                         else
                         {
                             chkbox_editar_ce.Enabled = true;
-
 
                             txt_correo_envio.Text = i_email[0].email;
                             txt_usuario_envio.Text = i_email[0].usuario;
@@ -580,6 +564,7 @@ namespace aw_liec_gastos
                         }
                     }
                     break;
+
                 case 9:
 
                     Session.Abandon();
@@ -587,17 +572,15 @@ namespace aw_liec_gastos
                     //Server.Transfer("acceso.aspx", true);
 
                     break;
+
                 default:
 
                     break;
             }
         }
 
-
         private void default_rpt()
         {
-
-
             pnl_rpt.Visible = true;
             DateTime.Now.ToShortDateString().Replace("/", "");
             DataTable dt_rpt = new DataTable();
@@ -607,7 +590,6 @@ namespace aw_liec_gastos
             //					select a).ToList();
             //}
 
-
             string str_date = DateTime.Now.ToShortDateString().Replace("/", "");
             ReportViewer1.ProcessingMode = ProcessingMode.Local;
             ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/rpt_liec.rdl");
@@ -615,14 +597,14 @@ namespace aw_liec_gastos
 
             SqlDataAdapter da = new SqlDataAdapter();
             SqlCommand cmd = new SqlCommand(@"SELECT  [dia_mes]
-      ,[mes]
-      ,[año]
-      ,[dia]
-      ,[etiqueta_rubro]
-      ,[desc_tipo_rubro]
-      ,[rubro]
-      ,[monto]
-      ,[desc_gasto]
+	  ,[mes]
+	  ,[año]
+	  ,[dia]
+	  ,[etiqueta_rubro]
+	  ,[desc_tipo_rubro]
+	  ,[rubro]
+	  ,[monto]
+	  ,[desc_gasto]
   FROM [db_liec].[dbo].[v_rpt01]
 	order by dia_mes asc;");
             cmd.CommandType = CommandType.Text;
@@ -652,7 +634,6 @@ namespace aw_liec_gastos
                 ddl_tipogasto_rubro.DataBind();
             }
             ddl_tipogasto_rubro.Items.Insert(0, new ListItem("Seleccionar", "0"));
-
 
             ddl_descgasto_rubro.Items.Clear();
             ddl_descgasto_rubro.Items.Insert(0, new ListItem("Seleccionar", "0"));
@@ -705,11 +686,9 @@ namespace aw_liec_gastos
             txt_pextra_rubro.Text = null;
             txt_vgasto.Text = null;
             txt_etiqueta_r.Text = null;
-
         }
 
-
-        #endregion
+        #endregion panel
 
         #region usuariof
 
@@ -722,9 +701,8 @@ namespace aw_liec_gastos
             txt_amaterno_fusuario.Text = null;
             txt_usuario_fusuario.Text = null;
             txt_clave_fusuario.Text = null;
-
-
         }
+
         protected void chkbox_edita_fusuario_CheckedChanged(object sender, EventArgs e)
         {
             if (chkbox_edita_fusuario.Checked)
@@ -736,35 +714,29 @@ namespace aw_liec_gastos
                 rfv_clave_fusuario.Enabled = true;
                 try
                 {
-
                     using (db_liecEntities m_fusuario = new db_liecEntities())
                     {
                         var i_fusuario = (from i_c in m_fusuario.inf_usuarios
                                           where i_c.id_usuario == guid_iduser
                                           select new
                                           {
-
                                               i_c.nombres,
                                               i_c.a_paterno,
                                               i_c.a_materno,
                                               i_c.fecha_nacimiento,
                                               i_c.codigo_usuario,
                                               i_c.clave,
-
                                           }).FirstOrDefault();
-
 
                         txt_nombres_fusuario.Text = i_fusuario.nombres;
                         txt_apaterno_fusuario.Text = i_fusuario.a_paterno;
                         txt_amaterno_fusuario.Text = i_fusuario.a_materno;
                         txt_usuario_fusuario.Text = i_fusuario.codigo_usuario;
                         txt_clave_fusuario.Text = i_fusuario.clave;
-
                     }
                 }
                 catch
                 {
-
                 }
             }
             else
@@ -775,8 +747,8 @@ namespace aw_liec_gastos
                 rfv_usuario_fusuario.Enabled = false;
                 rfv_clave_fusuario.Enabled = false;
             }
-
         }
+
         protected void btn_guarda_fusuario_Click(object sender, EventArgs e)
         {
             if (chkbox_edita_fusuario.Checked)
@@ -810,7 +782,6 @@ namespace aw_liec_gastos
                                                         where c.id_usuario == guid_iduser
                                                         select c).FirstOrDefault();
 
-
                                     i_fusuarioff.nombres = str_nombres;
                                     i_fusuarioff.a_paterno = str_apaterno;
                                     i_fusuarioff.a_materno = str_amaterno;
@@ -822,20 +793,17 @@ namespace aw_liec_gastos
 
                                     limpia_txt_fusuario();
                                     Mensaje("Datos de Usuario actualizados con éxito.");
-
                                 }
                             }
                             else
                             {
                                 txt_usuario_fusuario.Text = null;
                                 Mensaje("Código de usuario ya existe en la base de datos, favor de reintentar.");
-
                             }
                         }
                     }
                     else
                     {
-
                         i_fusuario[0].nombres = str_nombres;
                         i_fusuario[0].a_paterno = str_apaterno;
                         i_fusuario[0].a_materno = str_amaterno;
@@ -847,10 +815,8 @@ namespace aw_liec_gastos
 
                         limpia_txt_fusuario();
                         Mensaje("Datos de Usuario actualizados con éxito.");
-
                     }
                 }
-
             }
             else
             {
@@ -858,13 +824,12 @@ namespace aw_liec_gastos
             }
         }
 
-        #endregion
+        #endregion usuariof
 
         #region negociof
 
         protected void btn_guarda_fnegocio_Click(object sender, EventArgs e)
         {
-
             guarda_fnegocio();
         }
 
@@ -898,7 +863,6 @@ namespace aw_liec_gastos
                                       where c.id_empresa == guid_fnegocio
                                       select c).FirstOrDefault();
 
-
                     i_fempresa.razon_social = str_corporativo;
                     i_fempresa.telefono = str_telefono;
                     i_fempresa.email = str_email;
@@ -918,18 +882,15 @@ namespace aw_liec_gastos
             }
         }
 
-
         protected void txt_nombre_empresa_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txt_nombre_empresa.Text))
             {
                 rfv_callenum_empresa.Enabled = false;
-
             }
             else
             {
                 rfv_callenum_empresa.Enabled = true;
-
             }
         }
 
@@ -939,7 +900,6 @@ namespace aw_liec_gastos
             { }
             else
             {
-
                 rfv_callenum_empresa.Enabled = true;
                 rfv_cp_empresa.Enabled = true;
                 rfv_colonia_empresa.Enabled = true;
@@ -975,8 +935,6 @@ namespace aw_liec_gastos
 
                 if (tbl_sepomex.Count == 1)
                 {
-
-
                     txt_municipio_empresa.Text = tbl_sepomex[0].d_mnpio;
                     txt_estado_empresa.Text = tbl_sepomex[0].d_estado;
                     rfv_colonia_empresa.Enabled = true;
@@ -985,7 +943,6 @@ namespace aw_liec_gastos
                 }
                 if (tbl_sepomex.Count > 1)
                 {
-
                     ddl_colonia_empresa.Items.Insert(0, new ListItem("Seleccionar", "0"));
 
                     txt_municipio_empresa.Text = tbl_sepomex[0].d_mnpio;
@@ -996,7 +953,6 @@ namespace aw_liec_gastos
                 }
                 else if (tbl_sepomex.Count == 0)
                 {
-
                     ddl_colonia_empresa.Items.Clear();
                     ddl_colonia_empresa.Items.Insert(0, new ListItem("Seleccionar", "0"));
                     txt_municipio_empresa.Text = null;
@@ -1007,11 +963,10 @@ namespace aw_liec_gastos
                 }
             }
         }
+
         private void limpia_txt_fnegocio()
         {
             ddl_colonia_empresa.Items.Clear();
-
-
 
             ddl_colonia_empresa.Items.Insert(0, new ListItem("Seleccionar", "0"));
             txt_nombre_empresa.Text = null;
@@ -1033,23 +988,17 @@ namespace aw_liec_gastos
                                     where i_u.id_empresa == guid_fnegocio
                                     select new
                                     {
-
                                         i_u.razon_social,
                                         i_u.telefono,
                                         i_u.email,
                                         i_u.callenum,
                                         i_u.id_codigo,
-
-
                                     }).FirstOrDefault();
-
 
                     txt_nombre_empresa.Text = inf_user.razon_social;
                     txt_telefono_empresa.Text = inf_user.telefono;
                     txt_email_empresa.Text = inf_user.email;
                     txt_callenum_empresa.Text = inf_user.callenum;
-
-
 
                     using (db_liecEntities db_sepomex = new db_liecEntities())
                     {
@@ -1071,7 +1020,6 @@ namespace aw_liec_gastos
                     rfv_callenum_empresa.Enabled = true;
                     rfv_cp_empresa.Enabled = true;
                     rfv_colonia_empresa.Enabled = true;
-
                 }
             }
             else
@@ -1082,7 +1030,8 @@ namespace aw_liec_gastos
                 rfv_colonia_empresa.Enabled = false;
             }
         }
-        #endregion
+
+        #endregion negociof
 
         #region gasto
 
@@ -1127,7 +1076,6 @@ namespace aw_liec_gastos
                                     fecha_registro = DateTime.Now,
                                     id_empresa = guid_fnegocio,
                                     id_estatus_operacion = 1
-
                                 };
 
                                 m_usuario.inf_gastos.Add(i_usuario);
@@ -1160,8 +1108,6 @@ namespace aw_liec_gastos
                                 m_usuario.SaveChanges();
                             }
 
-
-
                             using (db_liecEntities edm_gastos = new db_liecEntities())
                             {
                                 var i_gastos = (from i_g in edm_gastos.inf_gastos
@@ -1170,7 +1116,6 @@ namespace aw_liec_gastos
                                                 select new
                                                 {
                                                     i_g.monto,
-
                                                 }).ToList();
 
                                 if (i_gastos.Count == 0)
@@ -1183,7 +1128,6 @@ namespace aw_liec_gastos
                                     dbl_monto = double.Parse(i_gastos.Sum(x => x.monto).ToString());
                                     //lbl_fgastos.Text = string.Format("{0:C}", (Math.Truncate(Convert.ToDouble(dml_gastos) * 100.0) / 100.0));
                                 }
-
                             }
 
                             using (db_liecEntities edm_gastosd = new db_liecEntities())
@@ -1198,7 +1142,6 @@ namespace aw_liec_gastos
                                 {
                                     limpia_txt_gastos();
                                     Mensaje("Datos agregados con éxito.");
-
                                 }
                                 else
                                 {
@@ -1223,8 +1166,6 @@ namespace aw_liec_gastos
                             }
                         }
                     }
-
-
                 }
                 else if (int_accion_gasto == 2)
                 {
@@ -1247,7 +1188,6 @@ namespace aw_liec_gastos
                                     guid_idgasto = items_user.id_gasto;
                                 }
 
-
                                 int int_estatusgasto;
 
                                 if (chkb_estatus_gasto.Checked == true)
@@ -1259,14 +1199,11 @@ namespace aw_liec_gastos
                                     int_estatusgasto = 1;
                                 }
 
-
-
                                 using (var m_fempresa = new db_liecEntities())
                                 {
                                     var i_fempresa = (from c in m_fempresa.inf_gastos
                                                       where c.id_gasto == guid_idgasto
                                                       select c).FirstOrDefault();
-
 
                                     i_fempresa.id_estatus = int_estatusgasto;
                                     i_fempresa.id_tipo_rubro = int_tiporubro;
@@ -1293,7 +1230,6 @@ namespace aw_liec_gastos
                                                         t_r.rubro,
                                                         i_r.desc_gasto,
                                                         i_r.fecha_registro
-
                                                     }).ToList();
 
                                     gv_gasto.DataSource = inf_user;
@@ -1312,7 +1248,7 @@ namespace aw_liec_gastos
             }
         }
 
-        private void notifica_gastos(int tipo_envio, double dbl_monto, Guid guid_descrubro, int int_tiporubro,Guid guid_ngasto)
+        private void notifica_gastos(int tipo_envio, double dbl_monto, Guid guid_descrubro, int int_tiporubro, Guid guid_ngasto)
         {
             if (tipo_envio == 1)
             {
@@ -1328,20 +1264,17 @@ namespace aw_liec_gastos
                                         i_g.presupuesto,
                                         i_g.minimo,
                                         i_g.maximo
-
                                     }).ToList();
 
                     double total = 0;
 
                     double ocupadad = 0;
 
-
                     double.TryParse(i_gastos[0].presupuesto.ToString(), out total);
 
                     double.TryParse(i_gastos[0].minimo.ToString(), out ocupadad);
 
                     dml_gastos = (total * (ocupadad / 100));
-
 
                     if (dbl_monto >= dml_gastos)
                     {
@@ -1355,7 +1288,6 @@ namespace aw_liec_gastos
                                            select c).ToList();
                             if (i_email.Count == 0)
                             {
-
                             }
                             else
                             {
@@ -1365,8 +1297,6 @@ namespace aw_liec_gastos
                                 asunto_e = i_email[0].asunto;
                                 smtp_e = i_email[0].servidor_smtp;
                                 puerto_e = int.Parse(i_email[0].puerto.ToString());
-
-
                             }
                         }
 
@@ -1376,11 +1306,9 @@ namespace aw_liec_gastos
                                              select c).ToList();
                             if (i_email_e.Count == 0)
                             {
-
                             }
                             else
                             {
-
                                 foreach (var item in i_email_e)
                                 {
                                     correo_r = item.email_recepcion;
@@ -1393,7 +1321,6 @@ namespace aw_liec_gastos
                                     registro_e = DateTime.Now;
 
                                     enviarcorreo(fcorreo_e, fusuario_e, clave_e, asunto_e, detalle_e, smtp_e, puerto_e, registro_e, correo_r, trubro_e, rubro_e, monto_e, usuario_reg);
-
                                 }
                             }
                         }
@@ -1434,12 +1361,10 @@ namespace aw_liec_gastos
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
                         upModal.Update();
                     }
-
                 }
             }
             else if (tipo_envio == 2)
             {
-
                 double dml_gastos;
 
                 using (db_liecEntities edm_gastos = new db_liecEntities())
@@ -1452,20 +1377,17 @@ namespace aw_liec_gastos
                                         i_g.presupuesto,
                                         i_g.minimo,
                                         i_g.maximo
-
                                     }).ToList();
 
                     double total = 0;
 
                     double ocupadad = 0;
 
-
                     double.TryParse(i_gastos[0].presupuesto.ToString(), out total);
 
                     double.TryParse(i_gastos[0].maximo.ToString(), out ocupadad);
 
                     dml_gastos = (total * (ocupadad / 100));
-
 
                     if (dbl_monto >= dml_gastos)
                     {
@@ -1479,7 +1401,6 @@ namespace aw_liec_gastos
                                            select c).ToList();
                             if (i_email.Count == 0)
                             {
-
                             }
                             else
                             {
@@ -1489,8 +1410,6 @@ namespace aw_liec_gastos
                                 asunto_e = i_email[0].asunto;
                                 smtp_e = i_email[0].servidor_smtp;
                                 puerto_e = int.Parse(i_email[0].puerto.ToString());
-
-
                             }
                         }
 
@@ -1500,11 +1419,9 @@ namespace aw_liec_gastos
                                              select c).ToList();
                             if (i_email_e.Count == 0)
                             {
-
                             }
                             else
                             {
-
                                 foreach (var item in i_email_e)
                                 {
                                     correo_r = item.email_recepcion;
@@ -1517,7 +1434,6 @@ namespace aw_liec_gastos
                                     registro_e = DateTime.Now;
 
                                     enviarcorreo(fcorreo_e, fusuario_e, clave_e, asunto_e, detalle_e, smtp_e, puerto_e, registro_e, correo_r, trubro_e, rubro_e, monto_e, usuario_reg);
-
                                 }
                             }
                         }
@@ -1548,6 +1464,7 @@ namespace aw_liec_gastos
                 }
             }
         }
+
         protected void chkbox_agregar_g_CheckedChanged(object sender, EventArgs e)
         {
             if (chkbox_agregar_g.Checked)
@@ -1581,6 +1498,7 @@ namespace aw_liec_gastos
                 rfv_desc_gasto.Enabled = false;
             }
         }
+
         protected void txt_buscar_gasto_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txt_buscar_gasto.Text))
@@ -1599,8 +1517,8 @@ namespace aw_liec_gastos
                 rfv_desc_gasto.Enabled = false;
                 rfv_buscar_gasto.Enabled = false;
             }
-
         }
+
         protected void chkbox_editar_g_CheckedChanged(object sender, EventArgs e)
         {
             if (chkbox_editar_g.Checked)
@@ -1617,7 +1535,6 @@ namespace aw_liec_gastos
                 rfv_monto_gasto.Enabled = true;
                 rfv_desc_gasto.Enabled = true;
 
-
                 using (db_liecEntities data_user = new db_liecEntities())
                 {
                     var inf_user = (from i_r in data_user.inf_gastos
@@ -1632,7 +1549,6 @@ namespace aw_liec_gastos
                                         t_r.rubro,
                                         i_r.desc_gasto,
                                         i_r.fecha_registro
-
                                     }).ToList();
 
                     gv_gasto.DataSource = inf_user;
@@ -1644,7 +1560,6 @@ namespace aw_liec_gastos
             {
                 int_accion_gasto = 0;
 
-          
                 chkbox_agregar_g.Checked = false;
 
                 rfv_tipogasto_rubro.Enabled = false;
@@ -1653,7 +1568,7 @@ namespace aw_liec_gastos
                 rfv_desc_gasto.Enabled = false;
             }
         }
-       
+
         protected void btn_buscar_gasto_Click(object sender, EventArgs e)
         {
             string str_userb = txt_buscar_gasto.Text.ToUpper();
@@ -1672,7 +1587,6 @@ namespace aw_liec_gastos
                                     t_r.rubro,
                                     i_r.desc_gasto,
                                     i_r.fecha_registro
-
                                 }).ToList();
                 if (inf_user.Count == 0)
                 {
@@ -1688,7 +1602,6 @@ namespace aw_liec_gastos
                     gv_gasto.DataBind();
                     gv_gasto.Visible = true;
                 }
-
             }
         }
 
@@ -1726,7 +1639,6 @@ namespace aw_liec_gastos
 
                                                 u.desc_gasto,
                                                 u.monto
-
                                             }).FirstOrDefault();
 
                             ddl_tipogasto_rubro.SelectedValue = inf_user.id_tipo_rubro.ToString();
@@ -1799,7 +1711,6 @@ namespace aw_liec_gastos
                                 {
                                     u.rubro,
                                     u.presupuesto,
-
                                 }).FirstOrDefault();
 
                 dbl_pfijo = double.Parse(inf_user.presupuesto.ToString());
@@ -1807,10 +1718,10 @@ namespace aw_liec_gastos
 
             lbl_pfijo_gasto.Text = "PRESUPUESTO FIJO: " + string.Format("{0:C}", (Math.Truncate(Convert.ToDouble(dbl_pfijo) * 100.0) / 100.0));
         }
+
         protected void gv_gasto_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gv_gasto.PageIndex = e.NewPageIndex;
-
 
             using (db_liecEntities data_user = new db_liecEntities())
             {
@@ -1826,7 +1737,6 @@ namespace aw_liec_gastos
                                     t_r.rubro,
                                     i_r.desc_gasto,
                                     i_r.fecha_registro
-
                                 }).ToList();
 
                 gv_gasto.DataSource = inf_user;
@@ -1834,7 +1744,8 @@ namespace aw_liec_gastos
                 gv_gasto.Visible = true;
             }
         }
-        #endregion
+
+        #endregion gasto
 
         #region caja
 
@@ -1883,7 +1794,6 @@ namespace aw_liec_gastos
                 rfv_monto_caja.Enabled = false;
                 rfv_tipocaja_rubro.Enabled = false;
                 rfv_desccaja_rubro.Enabled = false;
-
             }
         }
 
@@ -1914,7 +1824,6 @@ namespace aw_liec_gastos
                                         i_dr.rubro,
                                         i_r.desc_caja,
                                         i_r.fecha_registro
-
                                     }).ToList();
 
                     gv_caja.DataSource = inf_user;
@@ -1960,8 +1869,6 @@ namespace aw_liec_gastos
 
                 if (int_accion_caja == 1)
                 {
-
-
                     using (db_liecEntities data_user = new db_liecEntities())
                     {
                         var items_user = (from c in data_user.inf_caja
@@ -1993,7 +1900,6 @@ namespace aw_liec_gastos
                             limpia_txt_caja();
 
                             Mensaje("Datos agregados con éxito.");
-
                         }
                         else
                         {
@@ -2020,7 +1926,6 @@ namespace aw_liec_gastos
 
                             limpia_txt_caja();
 
-
                             double dml_caja, dml_monto;
 
                             using (db_liecEntities edm_rubro = new db_liecEntities())
@@ -2030,7 +1935,6 @@ namespace aw_liec_gastos
                                                select new
                                                {
                                                    u.monto
-
                                                }).ToList();
 
                                 if (i_rubro.Count == 0)
@@ -2047,32 +1951,25 @@ namespace aw_liec_gastos
                             {
                                 var i_gastos = (from i_g in edm_gastos.inf_caja
 
-
                                                 select new
                                                 {
                                                     i_g.monto,
-
                                                 }).ToList();
 
                                 if (i_gastos.Count == 0)
                                 {
                                     dml_caja = i_gastos.Count;
-
                                 }
                                 else
                                 {
                                     dml_caja = double.Parse(i_gastos.Sum(x => x.monto).ToString());
-
                                 }
-
                             }
                             lbl_tcaja.Text = "MONTO: " + string.Format("{0:C}", (Math.Truncate(Convert.ToDouble(dml_monto) * 100.0) / 100.0)) + " GASTOS: " + string.Format("{0:C}", (Math.Truncate(Convert.ToDouble(dml_caja) * 100.0) / 100.0)) + " BALANCE: " + string.Format("{0:C}", (Math.Truncate(Convert.ToDouble(dml_monto - dml_caja) * 100.0) / 100.0));
                             up_caja.Update();
                             Mensaje("Datos agregados con éxito.");
                         }
                     }
-
-
                 }
                 else if (int_accion_caja == 2)
                 {
@@ -2095,7 +1992,6 @@ namespace aw_liec_gastos
                                     guid_idcaja = items_user.id_caja;
                                 }
 
-
                                 int int_estatuscaja;
 
                                 if (chkb_estatus_caja.Checked == true)
@@ -2107,14 +2003,11 @@ namespace aw_liec_gastos
                                     int_estatuscaja = 1;
                                 }
 
-
-
                                 using (var m_fempresa = new db_liecEntities())
                                 {
                                     var i_fempresa = (from c in m_fempresa.inf_caja
                                                       where c.id_caja == guid_idcaja
                                                       select c).FirstOrDefault();
-
 
                                     i_fempresa.id_estatus = int_estatuscaja;
                                     i_fempresa.id_tipo_rubro = int_tiporubro;
@@ -2127,7 +2020,6 @@ namespace aw_liec_gastos
 
                                 limpia_txt_rubros();
 
-
                                 double dml_caja, dml_monto;
 
                                 using (db_liecEntities edm_rubro = new db_liecEntities())
@@ -2137,7 +2029,6 @@ namespace aw_liec_gastos
                                                    select new
                                                    {
                                                        u.monto
-
                                                    }).ToList();
 
                                     if (i_rubro.Count == 0)
@@ -2154,24 +2045,19 @@ namespace aw_liec_gastos
                                 {
                                     var i_gastos = (from i_g in edm_gastos.inf_caja
 
-
                                                     select new
                                                     {
                                                         i_g.monto,
-
                                                     }).ToList();
 
                                     if (i_gastos.Count == 0)
                                     {
                                         dml_caja = i_gastos.Count;
-
                                     }
                                     else
                                     {
                                         dml_caja = double.Parse(i_gastos.Sum(x => x.monto).ToString());
-
                                     }
-
                                 }
                                 lbl_tcaja.Text = "MONTO: " + string.Format("{0:C}", (Math.Truncate(Convert.ToDouble(dml_monto) * 100.0) / 100.0)) + " GASTOS: " + string.Format("{0:C}", (Math.Truncate(Convert.ToDouble(dml_caja) * 100.0) / 100.0)) + " BALANCE: " + string.Format("{0:C}", (Math.Truncate(Convert.ToDouble(dml_monto - dml_caja) * 100.0) / 100.0));
 
@@ -2188,17 +2074,12 @@ namespace aw_liec_gastos
                                                         i_r.rubro,
                                                         i_r.desc_caja,
                                                         i_r.fecha_registro
-
                                                     }).ToList();
 
                                     gv_caja.DataSource = inf_user;
                                     gv_caja.DataBind();
                                     gv_caja.Visible = true;
                                 }
-
-
-
-
 
                                 using (db_liecEntities edm_rubro = new db_liecEntities())
                                 {
@@ -2207,7 +2088,6 @@ namespace aw_liec_gastos
                                                    select new
                                                    {
                                                        u.monto
-
                                                    }).ToList();
 
                                     if (i_rubro.Count == 0)
@@ -2224,29 +2104,23 @@ namespace aw_liec_gastos
                                 {
                                     var i_gastos = (from i_g in edm_gastos.inf_caja
 
-
                                                     select new
                                                     {
                                                         i_g.monto,
-
                                                     }).ToList();
 
                                     if (i_gastos.Count == 0)
                                     {
                                         dml_caja = i_gastos.Count;
-
                                     }
                                     else
                                     {
                                         dml_caja = double.Parse(i_gastos.Sum(x => x.monto).ToString());
-
                                     }
-
                                 }
                                 lbl_tcaja.Text = "MONTO: " + string.Format("{0:C}", (Math.Truncate(Convert.ToDouble(dml_monto) * 100.0) / 100.0)) + " GASTOS: " + string.Format("{0:C}", (Math.Truncate(Convert.ToDouble(dml_caja) * 100.0) / 100.0)) + " BALANCE: " + string.Format("{0:C}", (Math.Truncate(Convert.ToDouble(dml_monto - dml_caja) * 100.0) / 100.0));
 
                                 Mensaje("Datos actualizados con éxito.");
-
                             }
                             else
                             {
@@ -2255,11 +2129,8 @@ namespace aw_liec_gastos
                         }
                     }
                 }
-
             }
         }
-
-
 
         protected void ddl_tipocaja_rubro_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -2282,7 +2153,6 @@ namespace aw_liec_gastos
 
         protected void btn_buscar_caja_Click(object sender, EventArgs e)
         {
-
             string str_userb = txt_buscar_caja.Text.ToUpper();
 
             using (db_liecEntities data_user = new db_liecEntities())
@@ -2300,7 +2170,6 @@ namespace aw_liec_gastos
                                     i_dr.rubro,
                                     i_r.desc_caja,
                                     i_r.fecha_registro
-
                                 }).ToList();
 
                 if (inf_user.Count == 0)
@@ -2310,7 +2179,6 @@ namespace aw_liec_gastos
                     gv_caja.Visible = true;
 
                     Mensaje("gasto no encontrado.");
-
                 }
                 else
                 {
@@ -2318,9 +2186,9 @@ namespace aw_liec_gastos
                     gv_caja.DataBind();
                     gv_caja.Visible = true;
                 }
-
             }
         }
+
         protected void chk_caja_CheckedChanged(object sender, EventArgs e)
         {
             Guid guid_idcaja;
@@ -2354,7 +2222,6 @@ namespace aw_liec_gastos
                                                 u.id_rubro,
                                                 u.desc_caja,
                                                 u.monto
-
                                             }).FirstOrDefault();
 
                             ddl_tipocaja_rubro.SelectedValue = inf_user.id_tipo_rubro.ToString();
@@ -2387,6 +2254,7 @@ namespace aw_liec_gastos
                 }
             }
         }
+
         protected void gv_caja_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gv_caja.PageIndex = e.NewPageIndex;
@@ -2405,7 +2273,6 @@ namespace aw_liec_gastos
                                     i_dr.rubro,
                                     i_r.desc_caja,
                                     i_r.fecha_registro
-
                                 }).ToList();
 
                 gv_caja.DataSource = inf_user;
@@ -2413,8 +2280,8 @@ namespace aw_liec_gastos
                 gv_caja.Visible = true;
             }
         }
-        #endregion
 
+        #endregion caja
 
         #region rubros
 
@@ -2452,7 +2319,6 @@ namespace aw_liec_gastos
                 rfv_minimo_rubro.Enabled = true;
                 rfv_maximo_rubro.Enabled = true;
                 rfv_pextra_rubro.Enabled = false;
-
             }
             else
             {
@@ -2492,14 +2358,12 @@ namespace aw_liec_gastos
                                         t_r.tipo_rubro,
                                         i_r.rubro,
                                         i_r.fecha_registro
-
                                     }).ToList();
 
                     gv_rubros.DataSource = inf_user;
                     gv_rubros.DataBind();
                     gv_rubros.Visible = true;
                 }
-
 
                 if (int_idtipousuario == 2)
                 {
@@ -2512,8 +2376,6 @@ namespace aw_liec_gastos
                     rfv_pextra_rubro.Enabled = false;
                 }
 
-
-
                 limpia_txt_rubros();
 
                 chkbox_agregar_r.Checked = false;
@@ -2524,7 +2386,6 @@ namespace aw_liec_gastos
                 rfv_pfijo_rubro.Enabled = true;
                 rfv_minimo_rubro.Enabled = true;
                 rfv_minimo_rubro.Enabled = true;
-
             }
             else
             {
@@ -2536,10 +2397,8 @@ namespace aw_liec_gastos
                 rfv_pfijo_rubro.Enabled = false;
                 rfv_minimo_rubro.Enabled = false;
                 rfv_minimo_rubro.Enabled = false;
-
             }
         }
-
 
         protected void btn_buscar_rubros_Click(object sender, EventArgs e)
         {
@@ -2558,7 +2417,6 @@ namespace aw_liec_gastos
                                     i_r.etiqueta_rubro,
                                     i_r.rubro,
                                     i_r.fecha_registro
-
                                 }).ToList();
 
                 if (inf_user.Count == 0)
@@ -2575,10 +2433,9 @@ namespace aw_liec_gastos
                     gv_rubros.DataBind();
                     gv_rubros.Visible = true;
                 }
-
             }
-
         }
+
         protected void txt_buscar_rubros_TextChanged(object sender, EventArgs e)
         {
             rfv_etiqueta_r.Enabled = false;
@@ -2589,6 +2446,7 @@ namespace aw_liec_gastos
             rfv_minimo_rubro.Enabled = false;
             rfv_pextra_rubro.Enabled = false;
         }
+
         protected void chk_rubros_CheckedChanged(object sender, EventArgs e)
         {
             Guid guid_idrubro;
@@ -2625,7 +2483,6 @@ namespace aw_liec_gastos
                                                 u.presupuesto_extra,
                                                 u.minimo,
                                                 u.maximo
-
                                             }).FirstOrDefault();
 
                             txt_etiqueta_r.Text = inf_user.etiqueta_rubro;
@@ -2649,7 +2506,6 @@ namespace aw_liec_gastos
                                             select new
                                             {
                                                 i_g.monto,
-
                                             }).ToList();
 
                             if (i_gastos.Count == 0)
@@ -2660,9 +2516,7 @@ namespace aw_liec_gastos
                             else
                             {
                                 dml_gastos = double.Parse(i_gastos.Sum(x => x.monto).ToString());
-
                             }
-
                         }
 
                         using (db_liecEntities edm_gastos = new db_liecEntities())
@@ -2673,7 +2527,6 @@ namespace aw_liec_gastos
                                             select new
                                             {
                                                 i_g.monto,
-
                                             }).ToList();
 
                             if (i_gastos.Count == 0)
@@ -2684,13 +2537,10 @@ namespace aw_liec_gastos
                             else
                             {
                                 dml_caja = double.Parse(i_gastos.Sum(x => x.monto).ToString());
-
                             }
-
                         }
 
                         txt_vgasto.Text = string.Format("{0:C}", (Math.Truncate(Convert.ToDouble(dml_gastos + dml_caja) * 100.0) / 100.0));
-
 
                         if (int_idtipousuario == 2)
                         {
@@ -2708,7 +2558,6 @@ namespace aw_liec_gastos
                         rfv_pfijo_rubro.Enabled = true;
                         rfv_minimo_rubro.Enabled = true;
                         rfv_minimo_rubro.Enabled = true;
-                        
                     }
                     else
                     {
@@ -2738,9 +2587,6 @@ namespace aw_liec_gastos
 
                 if (int_accion_rubro == 1)
                 {
-
-
-
                     using (db_liecEntities data_user = new db_liecEntities())
                     {
                         var items_user = (from c in data_user.inf_rubro
@@ -2813,10 +2659,8 @@ namespace aw_liec_gastos
                                         edm_ctrl_montosf.inf_control_montos.Add(i_ctrl_montosf);
                                         edm_ctrl_montosf.SaveChanges();
                                     }
-
                                 }
                             }
-
 
                             limpia_txt_rubros();
                             Mensaje("Datos agregados con éxito.");
@@ -2888,14 +2732,12 @@ namespace aw_liec_gastos
                                         edm_ctrl_montosf.inf_control_montos.Add(i_ctrl_montosf);
                                         edm_ctrl_montosf.SaveChanges();
                                     }
-
                                 }
                             }
 
                             limpia_txt_rubros();
 
                             Mensaje("Datos agregados con éxito.");
-
                         }
                     }
                 }
@@ -2922,15 +2764,11 @@ namespace aw_liec_gastos
 
                                 double dbl_pextra = double.Parse(txt_pextra_rubro.Text);
 
-
-
-
                                 using (var m_fempresa = new db_liecEntities())
                                 {
                                     var i_fempresa = (from c in m_fempresa.inf_rubro
                                                       where c.id_rubro == guid_idrubro
                                                       select c).FirstOrDefault();
-
 
                                     //i_fempresa.id_estatus = int_estatusrubro;
                                     i_fempresa.id_tipo_rubro = int_tiporubro;
@@ -2942,7 +2780,6 @@ namespace aw_liec_gastos
                                     m_fempresa.SaveChanges();
                                 }
 
-
                                 if (dbl_pextra == 0)
                                 {
                                     using (var m_fempresa = new db_liecEntities())
@@ -2951,10 +2788,8 @@ namespace aw_liec_gastos
                                                           where c.id_rubro == guid_idrubro
                                                           select c).FirstOrDefault();
 
-
-                                        
                                         i_fempresa.monto = dbl_pfijo;
-                                      
+
                                         m_fempresa.SaveChanges();
                                     }
                                 }
@@ -2966,16 +2801,12 @@ namespace aw_liec_gastos
                                                           where c.id_rubro == guid_idrubro
                                                           select c).FirstOrDefault();
 
-
-
                                         i_fempresa.presupuesto = dbl_pfijo;
                                         i_fempresa.presupuesto_extra = dbl_pextra;
 
                                         m_fempresa.SaveChanges();
                                     }
-                                    
                                 }
-
 
                                 limpia_txt_rubros();
 
@@ -2992,7 +2823,6 @@ namespace aw_liec_gastos
                                                         i_r.etiqueta_rubro,
                                                         i_r.rubro,
                                                         i_r.fecha_registro
-
                                                     }).ToList();
 
                                     gv_rubros.DataSource = inf_user;
@@ -3007,15 +2837,10 @@ namespace aw_liec_gastos
                             }
                         }
                     }
-
-
-
                 }
                 else if (int_accion_rubro == 3)
                 {
-
                 }
-
             }
         }
 
@@ -3036,7 +2861,6 @@ namespace aw_liec_gastos
                                     t_r.tipo_rubro,
                                     i_r.rubro,
                                     i_r.fecha_registro
-
                                 }).ToList();
 
                 gv_rubros.DataSource = inf_user;
@@ -3044,9 +2868,11 @@ namespace aw_liec_gastos
                 gv_rubros.Visible = true;
             }
         }
-        #endregion
+
+        #endregion rubros
 
         #region usuarios
+
         protected void chkbox_agregar_u_CheckedChanged(object sender, EventArgs e)
         {
             if (chkbox_agregar_u.Checked)
@@ -3061,8 +2887,6 @@ namespace aw_liec_gastos
 
                 ddl_perfil.Enabled = false;
                 chkb_activar_usuario.Enabled = false;
-
-
             }
             else
             {
@@ -3083,7 +2907,6 @@ namespace aw_liec_gastos
             {
                 int_accion_usuario = 2;
 
-
                 limpia_txt_usuarios();
 
                 chkbox_agregar_u.Checked = false;
@@ -3091,8 +2914,6 @@ namespace aw_liec_gastos
                 gv_usuarios.Visible = false;
                 ddl_perfil.Enabled = true;
                 chkb_activar_usuario.Enabled = true;
-
-
             }
             else
             {
@@ -3107,12 +2928,10 @@ namespace aw_liec_gastos
             }
         }
 
-
         protected void chkb_administrador_CheckedChanged(object sender, EventArgs e)
         {
             if (chkb_administrador.Checked == true)
             {
-
                 rfv_nombres_usuario.Enabled = true;
                 rfv_apaterno_usuario.Enabled = true;
                 rfv_amaterno_usuario.Enabled = true;
@@ -3132,7 +2951,6 @@ namespace aw_liec_gastos
                     {
                         grid_usuarios(int_tipousuario);
 
-
                         ddl_perfil.Items.Clear();
                         using (db_liecEntities m_genero = new db_liecEntities())
                         {
@@ -3148,15 +2966,14 @@ namespace aw_liec_gastos
                         }
                         ddl_perfil.Items.Insert(0, new ListItem("SELECCIONAR", "0"));
                     }
-
                 }
             }
             else
             {
                 limpia_txt_usuarios();
             }
-
         }
+
         protected void chkb_ejecutivo_CheckedChanged(object sender, EventArgs e)
         {
             if (chkb_ejecutivo.Checked == true)
@@ -3173,11 +2990,9 @@ namespace aw_liec_gastos
                 if (filtro_usuario() == 0)
                 {
                     Mensaje("Favor de seleccionar perfil.");
-
                 }
                 else
                 {
-
                     if (int_accion_usuario == 2)
                     {
                         grid_usuarios(int_tipousuario);
@@ -3202,8 +3017,8 @@ namespace aw_liec_gastos
             {
                 limpia_txt_usuarios();
             }
-
         }
+
         protected void chkb_invitado_CheckedChanged(object sender, EventArgs e)
         {
             if (chkb_invitado.Checked == true)
@@ -3223,7 +3038,6 @@ namespace aw_liec_gastos
                 }
                 else
                 {
-
                     if (int_accion_usuario == 2)
                     {
                         grid_usuarios(int_tipousuario);
@@ -3249,6 +3063,7 @@ namespace aw_liec_gastos
                 limpia_txt_usuarios();
             }
         }
+
         protected void btn_guardar_usuario_Click(object sender, EventArgs e)
         {
             if (int_accion_usuario == 0)
@@ -3263,7 +3078,6 @@ namespace aw_liec_gastos
                 }
                 else
                 {
-
                     guarda_registro_usuario();
                 }
             }
@@ -3274,8 +3088,6 @@ namespace aw_liec_gastos
             gv_usuarios.PageIndex = e.NewPageIndex;
             grid_usuarios(int_tipousuario);
         }
-
-
 
         protected void chk_usuario_CheckedChanged(object sender, EventArgs e)
         {
@@ -3305,7 +3117,6 @@ namespace aw_liec_gastos
                                             where u.id_usuario == id_fuser
                                             select new
                                             {
-
                                                 u.nombres,
                                                 u.a_paterno,
                                                 u.a_materno,
@@ -3313,19 +3124,15 @@ namespace aw_liec_gastos
                                                 u.fecha_nacimiento,
                                                 u.codigo_usuario,
                                                 u.clave
-
                                             }).FirstOrDefault();
-
 
                             txt_nombres_usuario.Text = inf_user.nombres;
                             txt_apaterno_usuario.Text = inf_user.a_paterno;
                             txt_amaterno_usuario.Text = inf_user.a_materno;
 
-
                             txt_usuario_usuario.Text = inf_user.codigo_usuario;
                             txt_clave_usuario.Text = inf_user.clave;
                         }
-
                     }
                     else
                     {
@@ -3334,6 +3141,7 @@ namespace aw_liec_gastos
                 }
             }
         }
+
         private void grid_usuarios(int idtipousuario)
         {
             using (db_liecEntities data_user = new db_liecEntities())
@@ -3342,7 +3150,6 @@ namespace aw_liec_gastos
                                 join i_e in data_user.fact_estatus on i_u.id_estatus equals i_e.id_estatus
                                 where i_u.id_tipo_usuario == idtipousuario
                                 where i_u.id_usuario != guid_iduser
-
 
                                 select new
                                 {
@@ -3353,7 +3160,6 @@ namespace aw_liec_gastos
                                     i_u.a_paterno,
                                     i_u.a_materno,
                                     i_u.fecha_registro
-
                                 }).ToList();
 
                 gv_usuarios.DataSource = inf_user;
@@ -3361,6 +3167,7 @@ namespace aw_liec_gastos
                 gv_usuarios.Visible = true;
             }
         }
+
         protected void btn_genera_usuario_Click(object sender, EventArgs e)
         {
             if (int_tipousuario == 0)
@@ -3369,12 +3176,8 @@ namespace aw_liec_gastos
             }
             else
             {
-
                 genera_usuario();
-
             }
-
-
         }
 
         protected void chk_correo_recepcion_CheckedChanged(object sender, EventArgs e)
@@ -3389,7 +3192,6 @@ namespace aw_liec_gastos
                         row.BackColor = Color.FromArgb(224, 153, 123);
                         string codeuser = row.Cells[1].Text;
 
-
                         using (db_liecEntities data_user = new db_liecEntities())
                         {
                             var inf_user = (from u in data_user.inf_email_recepcion
@@ -3397,9 +3199,7 @@ namespace aw_liec_gastos
                                             select new
                                             {
                                                 u.email_recepcion
-
                                             }).FirstOrDefault();
-
 
                             txt_correo_recepcion.Text = inf_user.email_recepcion;
                         }
@@ -3434,7 +3234,6 @@ namespace aw_liec_gastos
 
                     if (items_user.Count == 0)
                     {
-
                         using (var m_usuario = new db_liecEntities())
                         {
                             var i_usuario = new inf_usuarios
@@ -3456,10 +3255,8 @@ namespace aw_liec_gastos
                             m_usuario.SaveChanges();
                         }
 
-
                         int_accion_usuario = 0;
                         limpia_txt_usuarios();
-
 
                         Mensaje("Datos agregados con éxito.");
                         lblModalTitle.Text = "LIEC";
@@ -3470,19 +3267,15 @@ namespace aw_liec_gastos
                     else
                     {
                         Mensaje("Usuario ya existe en la base de datos, favor de reintentar.");
-
                     }
                 }
-
             }
             else if (int_accion_usuario == 2)
             {
                 int int_perfil;
 
-
                 if (ddl_perfil.SelectedValue == "0")
                 {
-
                     using (db_liecEntities data_user = new db_liecEntities())
                     {
                         var items_user = (from c in data_user.inf_usuarios
@@ -3548,7 +3341,6 @@ namespace aw_liec_gastos
 
                                 limpia_txt_usuarios();
 
-
                                 Mensaje("Datos actualizados con éxito.");
                             }
                             else
@@ -3586,19 +3378,14 @@ namespace aw_liec_gastos
 
                                         limpia_txt_usuarios();
 
-
                                         Mensaje("Usuario ya existe en la base de datos, favor de reintentar.");
-
                                     }
                                     else
                                     {
                                         Mensaje("Datos agregados con éxito.");
-
                                     }
                                 }
                             }
-
-
                         }
                         else
                         {
@@ -3642,10 +3429,7 @@ namespace aw_liec_gastos
 
                             grid_usuarios(int_tipousuario);
 
-
-
                             Mensaje("Usuario dado de baja con éxito.");
-
                         }
                         else
                         {
@@ -3655,9 +3439,6 @@ namespace aw_liec_gastos
                 }
             }
         }
-
-
-
 
         private void genera_usuario()
         {
@@ -3682,8 +3463,6 @@ namespace aw_liec_gastos
             }
         }
 
-
-
         public int filtro_usuario()
         {
             if (chkb_administrador.Checked)
@@ -3691,7 +3470,6 @@ namespace aw_liec_gastos
                 int_tipousuario = 2;
                 return 2;
             }
-
             else if (chkb_ejecutivo.Checked)
             {
                 int_tipousuario = 3;
@@ -3710,8 +3488,6 @@ namespace aw_liec_gastos
 
         private void limpia_txt_usuarios()
         {
-
-
             ddl_perfil.Items.Clear();
             using (db_liecEntities m_genero = new db_liecEntities())
             {
@@ -3733,7 +3509,6 @@ namespace aw_liec_gastos
             txt_usuario_usuario.Text = null;
             txt_clave_usuario.Text = null;
 
-
             gv_usuarios.Visible = false;
 
             chkb_administrador.Checked = false;
@@ -3743,14 +3518,12 @@ namespace aw_liec_gastos
             chkb_invitado.Checked = false;
 
             chkb_activar_usuario.Checked = false;
-
-
         }
+
         private string RemoveSpecialCharacters(string str)
         {
             return Regex.Replace(str, @"[^0-9A-Za-z]", "", RegexOptions.None);
         }
-
 
         public static string RemoveAccentsWithRegEx(string inputString)
         {
@@ -3766,15 +3539,16 @@ namespace aw_liec_gastos
             inputString = replace_u_Accents.Replace(inputString, "u");
             return inputString;
         }
-        #endregion
+
+        #endregion usuarios
 
         #region correos
+
         protected void chkbox_agregar_ce_CheckedChanged(object sender, EventArgs e)
         {
             if (chkbox_agregar_ce.Checked)
             {
                 chkbox_editar_ce.Checked = false;
-
 
                 rfv_correo_envio.Enabled = true;
                 rfv_asunto_envio.Enabled = true;
@@ -3784,13 +3558,10 @@ namespace aw_liec_gastos
                 rfv_puerto_envio.Enabled = true;
 
                 int_accion_email_envio = 1;
-
-
             }
             else
             {
                 chkbox_editar_ce.Checked = false;
-
 
                 rfv_correo_envio.Enabled = false;
                 rfv_asunto_envio.Enabled = false;
@@ -3801,13 +3572,11 @@ namespace aw_liec_gastos
             }
         }
 
- 
         protected void chkbox_editar_ce_CheckedChanged(object sender, EventArgs e)
         {
             if (chkbox_editar_ce.Checked)
             {
                 chkbox_agregar_ce.Checked = false;
-
 
                 rfv_correo_envio.Enabled = true;
                 rfv_asunto_envio.Enabled = true;
@@ -3824,7 +3593,6 @@ namespace aw_liec_gastos
                                    select c).ToList();
                     if (i_email.Count == 0)
                     {
-
                     }
                     else
                     {
@@ -3841,7 +3609,6 @@ namespace aw_liec_gastos
             {
                 chkbox_agregar_ce.Checked = false;
 
-
                 rfv_correo_envio.Enabled = false;
                 rfv_asunto_envio.Enabled = false;
                 rfv_usuario_envio.Enabled = false;
@@ -3850,6 +3617,7 @@ namespace aw_liec_gastos
                 rfv_puerto_envio.Enabled = false;
             }
         }
+
         private void limpia_txt_correos()
         {
             txt_correo_envio.Text = null;
@@ -3859,6 +3627,7 @@ namespace aw_liec_gastos
             txt_servidor_smtp.Text = null;
             txt_puerto_envio.Text = null;
         }
+
         protected void btn_guardar_envio_Click(object sender, EventArgs e)
         {
             if (chkbox_agregar_ce.Checked || chkbox_editar_ce.Checked)
@@ -3907,7 +3676,6 @@ namespace aw_liec_gastos
 
                             limpia_txt_correos();
                             Mensaje("Datos agregados con éxito");
-
                         }
                         else
                         {
@@ -3939,7 +3707,6 @@ namespace aw_liec_gastos
                         i_fusuarioff.puerto = str_puertoenvio;
 
                         m_fusuarioff.SaveChanges();
-
                     }
                     Mensaje("Datos actualizados con éxito");
                 }
@@ -3970,9 +3737,8 @@ namespace aw_liec_gastos
             {
                 Mensaje("Favor de activar la edición de los datos");
             }
-
-
         }
+
         protected void chkbox_agregar_cr_CheckedChanged(object sender, EventArgs e)
         {
             if (chkbox_agregar_cr.Checked)
@@ -3991,7 +3757,6 @@ namespace aw_liec_gastos
                 chkbox_editar_cr.Checked = false;
                 rfv_correo_recepcion.Enabled = false;
             }
-
         }
 
         protected void chkbox_editar_cr_CheckedChanged(object sender, EventArgs e)
@@ -4008,7 +3773,6 @@ namespace aw_liec_gastos
                     {
                         Mensaje("Sin datos de correo para recepción, favor de agregar");
                         rfv_correo_recepcion.Enabled = false;
-
                     }
                     else
                     {
@@ -4027,7 +3791,6 @@ namespace aw_liec_gastos
                                                 u.email_recepcion,
                                                 i_tu.desc_estatus,
                                                 u.fecha_registro
-
                                             }).ToList();
 
                             gv_correo_recepcion.DataSource = inf_user;
@@ -4100,7 +3863,6 @@ namespace aw_liec_gastos
                 }
                 else if (int_accion_email_recepcion == 2)
                 {
-
                     int int_estatus_recepcion;
 
                     if (chkb_estatus_recepcion.Checked == true)
@@ -4122,7 +3884,6 @@ namespace aw_liec_gastos
                                 row.BackColor = Color.FromArgb(224, 153, 123);
                                 string codeuser = row.Cells[1].Text;
 
-
                                 using (var m_fusuarioff = new db_liecEntities())
                                 {
                                     var i_fusuarioff = (from c in m_fusuarioff.inf_email_recepcion
@@ -4132,7 +3893,6 @@ namespace aw_liec_gastos
                                     i_fusuarioff.email_recepcion = str_correorecepcion;
                                     i_fusuarioff.id_estatus = int_estatus_recepcion;
                                     m_fusuarioff.SaveChanges();
-
                                 }
 
                                 using (db_liecEntities data_user = new db_liecEntities())
@@ -4144,7 +3904,6 @@ namespace aw_liec_gastos
                                                         u.email_recepcion,
                                                         i_tu.desc_estatus,
                                                         u.fecha_registro
-
                                                     }).ToList();
 
                                     gv_correo_recepcion.DataSource = inf_user;
@@ -4174,7 +3933,6 @@ namespace aw_liec_gastos
                                 row.BackColor = Color.FromArgb(224, 153, 123);
                                 string codeuser = row.Cells[1].Text;
 
-
                                 using (var m_fusuarioff = new db_liecEntities())
                                 {
                                     var i_fusuarioff = (from c in m_fusuarioff.inf_email_recepcion
@@ -4183,7 +3941,6 @@ namespace aw_liec_gastos
 
                                     i_fusuarioff.id_estatus = 3;
                                     m_fusuarioff.SaveChanges();
-
                                 }
 
                                 using (db_liecEntities data_user = new db_liecEntities())
@@ -4194,7 +3951,6 @@ namespace aw_liec_gastos
                                                     {
                                                         u.email_recepcion,
                                                         u.fecha_registro
-
                                                     }).ToList();
 
                                     gv_correo_recepcion.DataSource = inf_user;
@@ -4212,12 +3968,10 @@ namespace aw_liec_gastos
                         }
                     }
                 }
-
-
             }
         }
-        #endregion
 
+        #endregion correos
 
         private void enviarcorreo(string correo_e, string usuario_e, string clave_e, string asunto_e, string detale_e, string smtp_e, int puerto_e, DateTime registro_e, string correo_r, string trubro_e, string rubro_e, string monto_e, string usuario_reg)
         {
@@ -4229,7 +3983,6 @@ namespace aw_liec_gastos
             //Direccion de correo electronico a la que queremos enviar el mensaje
             mmsg.To.Add(correo_r);
 
-
             //Nota: La propiedad To es una colección que permite enviar el mensaje a más de un destinatario
 
             //Asunto
@@ -4240,7 +3993,6 @@ namespace aw_liec_gastos
             //mmsg.Bcc.Add("destinatariocopia@servidordominio.com"); //Opcional
 
             //Cuerpo del Mensaje
-
 
             string str_table = @"
 DETALLE: " + detale_e + @"
@@ -4286,11 +4038,7 @@ FECHA: " + registro_e.ToShortDateString() + "";
                 Mensaje("Error enviando correo electrónico: " + ex.Message);
             }
 
-            //Enviamos el mensaje      
-        
-
-
-            
+            //Enviamos el mensaje
         }
 
         private void Mensaje(string contenido)

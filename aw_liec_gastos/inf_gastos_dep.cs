@@ -19,7 +19,5 @@ namespace aw_liec_gastos
         public System.Guid id_rubro { get; set; }
         public Nullable<int> id_estatus_montos { get; set; }
         public System.Guid id_gasto { get; set; }
-    
-        public virtual inf_gastos inf_gastos { get; set; }
     }
 }

@@ -14,12 +14,6 @@ namespace aw_liec_gastos
     
     public partial class inf_gastos
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public inf_gastos()
-        {
-            this.inf_gastos_dep = new HashSet<inf_gastos_dep>();
-        }
-    
         public System.Guid id_gasto { get; set; }
         public Nullable<int> id_estatus { get; set; }
         public Nullable<int> id_tipo_rubro { get; set; }
@@ -30,9 +24,5 @@ namespace aw_liec_gastos
         public string desc_gasto { get; set; }
         public string codigo_gasto { get; set; }
         public Nullable<int> id_estatus_operacion { get; set; }
-    
-        public virtual inf_empresa inf_empresa { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<inf_gastos_dep> inf_gastos_dep { get; set; }
     }
 }

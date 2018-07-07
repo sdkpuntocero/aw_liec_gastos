@@ -25,9 +25,5 @@ namespace aw_liec_gastos
         public string desc_caja { get; set; }
         public string codigo_caja { get; set; }
         public Nullable<int> id_estatus_operacion { get; set; }
-    
-        public virtual fact_estatus fact_estatus { get; set; }
-        public virtual fact_tipo_rubro fact_tipo_rubro { get; set; }
-        public virtual inf_empresa inf_empresa { get; set; }
     }
 }

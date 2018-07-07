@@ -305,7 +305,6 @@
                                                     <asp:RequiredFieldValidator ID="rfv_buscar_gasto" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_buscar_gasto" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
                                                 </div>
                                             </div>
-
                                         </div>
                                         <div class="col-lg-4"></div>
                                     </div>
@@ -479,7 +478,6 @@
                                                 <asp:RequiredFieldValidator ID="rfv_desc_caja" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_desc_caja" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
-
                                     </div>
                                     <div class="col-lg-2">
                                         <div class="form-group text-left">
@@ -675,7 +673,6 @@
                                                         ErrorTooltipEnabled="True" />
                                                 </div>
                                             </div>
-
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="form-group text-left">
@@ -823,7 +820,6 @@
                                         </div>
                                         <div class="form-group">
                                             <br />
-
                                         </div>
                                     </div>
 
@@ -884,10 +880,8 @@
                                                         <asp:TextBox CssClass="form-control" ID="txt_servidor_smtp" runat="server" placeholder="Capturar SMTP"></asp:TextBox>
                                                         <div class="text-right">
                                                             <asp:RequiredFieldValidator ID="rfv_servidor_smtp" runat="server" ErrorMessage="*Campo Obligatorio" ControlToValidate="txt_servidor_smtp" ForeColor="DarkRed" Enabled="false"></asp:RequiredFieldValidator>
-
                                                         </div>
                                                     </div>
-
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <div class="form-group text-left">
@@ -969,7 +963,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </ContentTemplate>

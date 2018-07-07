@@ -14,15 +14,11 @@ namespace aw_liec_gastos
     
     public partial class inf_rubro
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public inf_rubro()
-        {
-            this.inf_control_montos = new HashSet<inf_control_montos>();
-        }
-    
         public System.Guid id_rubro { get; set; }
+        public string codigo_rubro { get; set; }
         public Nullable<int> id_estatus { get; set; }
         public Nullable<int> id_tipo_rubro { get; set; }
+        public string etiqueta_rubro { get; set; }
         public string rubro { get; set; }
         public Nullable<double> presupuesto { get; set; }
         public Nullable<int> minimo { get; set; }
@@ -30,13 +26,5 @@ namespace aw_liec_gastos
         public Nullable<double> presupuesto_extra { get; set; }
         public Nullable<System.DateTime> fecha_registro { get; set; }
         public Nullable<System.Guid> id_empresa { get; set; }
-        public string codigo_rubro { get; set; }
-        public string etiqueta_rubro { get; set; }
-    
-        public virtual fact_estatus fact_estatus { get; set; }
-        public virtual fact_tipo_rubro fact_tipo_rubro { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<inf_control_montos> inf_control_montos { get; set; }
-        public virtual inf_empresa inf_empresa { get; set; }
     }
 }

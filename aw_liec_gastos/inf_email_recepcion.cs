@@ -19,8 +19,5 @@ namespace aw_liec_gastos
         public string email_recepcion { get; set; }
         public Nullable<System.DateTime> fecha_registro { get; set; }
         public Nullable<System.Guid> id_empresa { get; set; }
-    
-        public virtual fact_estatus fact_estatus { get; set; }
-        public virtual inf_empresa inf_empresa { get; set; }
     }
 }

@@ -14,17 +14,6 @@ namespace aw_liec_gastos
     
     public partial class inf_empresa
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public inf_empresa()
-        {
-            this.inf_caja = new HashSet<inf_caja>();
-            this.inf_email_envio = new HashSet<inf_email_envio>();
-            this.inf_email_recepcion = new HashSet<inf_email_recepcion>();
-            this.inf_gastos = new HashSet<inf_gastos>();
-            this.inf_rubro = new HashSet<inf_rubro>();
-            this.inf_usuarios = new HashSet<inf_usuarios>();
-        }
-    
         public System.Guid id_empresa { get; set; }
         public Nullable<int> id_estatus { get; set; }
         public string razon_social { get; set; }
@@ -33,20 +22,5 @@ namespace aw_liec_gastos
         public string callenum { get; set; }
         public Nullable<int> id_codigo { get; set; }
         public Nullable<System.DateTime> fecha_registro { get; set; }
-    
-        public virtual fact_estatus fact_estatus { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<inf_caja> inf_caja { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<inf_email_envio> inf_email_envio { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<inf_email_recepcion> inf_email_recepcion { get; set; }
-        public virtual inf_sepomex inf_sepomex { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<inf_gastos> inf_gastos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<inf_rubro> inf_rubro { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<inf_usuarios> inf_usuarios { get; set; }
     }
 }

@@ -19,7 +19,5 @@ namespace aw_liec_gastos
         public Nullable<System.DateTime> fecha_registro { get; set; }
         public System.Guid id_rubro { get; set; }
         public Nullable<int> id_tipo_rubro { get; set; }
-    
-        public virtual inf_rubro inf_rubro { get; set; }
     }
 }

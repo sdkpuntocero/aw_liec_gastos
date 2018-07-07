@@ -16,18 +16,20 @@
     <DataSet Name="DataSet1">
       <Query>
         <DataSourceName>DataSource1</DataSourceName>
-        <CommandText>SELECT
-  v_rpt01.dia_mes
-  ,v_rpt01.mes
-  ,v_rpt01.año
-  ,v_rpt01.dia
-  ,v_rpt01.etiqueta_rubro
-  ,v_rpt01.desc_tipo_rubro
-  ,v_rpt01.rubro
-  ,v_rpt01.monto
-  ,v_rpt01.desc_gasto
-FROM
-  v_rpt01</CommandText>
+        <CommandText>
+          SELECT
+          v_rpt01.dia_mes
+          ,v_rpt01.mes
+          ,v_rpt01.año
+          ,v_rpt01.dia
+          ,v_rpt01.etiqueta_rubro
+          ,v_rpt01.desc_tipo_rubro
+          ,v_rpt01.rubro
+          ,v_rpt01.monto
+          ,v_rpt01.desc_gasto
+          FROM
+          v_rpt01
+        </CommandText>
         <rd:DesignerState>
           <QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational">
             <SelectedColumns>
